@@ -1,14 +1,20 @@
 window.onload = () => {
 
-    function makeTimer() {
+    var endTime = new Date();
+    var endTime = (Date.parse(endTime)) / 1000 + 10;
 
-        var endTime = new Date("September 01, 2011 00:00:00");
-        var endTime = (Date.parse(endTime)) / 1000;
+    function makeTimer(endTime) {
 
         var now = new Date();
         var now = (Date.parse(now) / 1000);
 
         var timeLeft = endTime - now;
+
+        // Event triggered when timeLeft reaches 0
+        if (timeLeft == 0) {
+            // Sub-routine
+            window.clearInterval(timerId)
+        };
 
         var days = Math.floor(timeLeft / 86400);
         var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
@@ -24,13 +30,19 @@ window.onload = () => {
         if (seconds < "10") {
             seconds = "0" + seconds;
         }
-        document.getElementById('days').innerHTML = "<span>Days</span>" + days document.getElementById('hours').innerHTML = "<span>Hours</span>" + hours document.getElementById('minutes').innerHTML = "<span>Minutes</span>" + minutes document.getElementById('seconds').innerHTML = "<span>Seconds</span>" + seconds
+
+        document.getElementById('days').innerHTML = "<span>Days</span>" + days;
+        document.getElementById('hours').innerHTML = "<span>Hours</span>" + hours;
+        document.getElementById('minutes').innerHTML = "<span>Minutes</span>" + minutes;
+        document.getElementById('seconds').innerHTML = "<span>Seconds</span>" + seconds;
     }
-    setInterval(() => {
-        makeTimer();
+
+    var timerId = setInterval(() => {
+        makeTimer(endTime);
     }, 1000);
 
 }
+
 
 
 // HTML output with this method
