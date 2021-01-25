@@ -1,7 +1,13 @@
 window.onload = () => {
 
     var endTime = new Date();
-    var endTime = (Date.parse(endTime)) / 1000 + 10;
+    var endTime = (Date.parse(endTime)) / 1000 + 20;
+
+    function pad2(number) {
+
+        return (number < 10 ? '0' : '') + number
+
+    }
 
     function makeTimer(endTime) {
 
@@ -10,9 +16,7 @@ window.onload = () => {
 
         var timeLeft = endTime - now;
 
-        // Event triggered when timeLeft reaches 0
         if (timeLeft == 0) {
-            // Sub-routine
             window.clearInterval(timerId)
         };
 
@@ -22,35 +26,25 @@ window.onload = () => {
         var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
 
         if (hours < "10") {
-            hours = "0" + hours;
+            hours = "0";
         }
         if (minutes < "10") {
-            minutes = "0" + minutes;
+            minutes = "0";
         }
         if (seconds < "10") {
-            seconds = "0" + seconds;
+            seconds = "0";
         }
 
-        document.getElementById('days').innerHTML = "<span>Days</span>" + days;
-        document.getElementById('hours').innerHTML = "<span>Hours</span>" + hours;
-        document.getElementById('minutes').innerHTML = "<span>Minutes</span>" + minutes;
-        document.getElementById('seconds').innerHTML = "<span>Seconds</span>" + seconds;
+        document.getElementById('hours').innerHTML = "<span></span>" + pad2(hours);
+        document.getElementById('minutes').innerHTML = "<span></span>" + pad2(minutes);
+        document.getElementById('seconds').innerHTML = "<span></span>" + pad2(seconds);
     }
+
+    // Create the HTML element
+    document.getElementById('countdown-timer').innerHTML = '<span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span>'
 
     var timerId = setInterval(() => {
         makeTimer(endTime);
     }, 1000);
 
 }
-
-
-
-// HTML output with this method
-// <div id="timer">
-//     <ul>
-//           <li id="days">...</li>
-//           <li id="hours">...</li>
-//           <li id="minutes">...</li>
-//           <li id="seconds">...</li>
-//     </ul>
-// </div>
