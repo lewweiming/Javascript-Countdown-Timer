@@ -25,16 +25,6 @@ window.onload = () => {
         var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600)) / 60);
         var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
 
-        if (hours < "10") {
-            hours = "0";
-        }
-        if (minutes < "10") {
-            minutes = "0";
-        }
-        if (seconds < "10") {
-            seconds = "0";
-        }
-
         document.getElementById('hours').innerHTML = "<span></span>" + pad2(hours);
         document.getElementById('minutes').innerHTML = "<span></span>" + pad2(minutes);
         document.getElementById('seconds').innerHTML = "<span></span>" + pad2(seconds);
